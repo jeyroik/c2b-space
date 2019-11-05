@@ -52,7 +52,7 @@ class WorldExtensionSpace extends Extension implements IWorldExtensionSpace
         $space = $world->getResource(static::RES__NAME);
         $bufferInc = $space->getBufferIncrement();
 
-        if ($curEnergy >= $bufferInc) {
+        if (($curEnergy >= $bufferInc) && ($space->getVolume() > $space->getBufferSize())) {
             $space->incSpaceBuffer($bufferInc);
             $world->decCurrentEnergy($bufferInc);
 
@@ -69,7 +69,7 @@ class WorldExtensionSpace extends Extension implements IWorldExtensionSpace
          * @var $space IResourceSpaceExtension
          */
         $space = $world->getResource(static::RES__NAME);
-        
+
         if ($world->getCurrentEnergy() >= $space->getVolume()) {
             $world->decCurrentEnergy($space->getVolume());
         } else {
@@ -92,6 +92,9 @@ class WorldExtensionSpace extends Extension implements IWorldExtensionSpace
 
         if ($world->getCurrentEnergy() < $space->getVolume()) {
             $space->expandSpaceDir($curExpDir, -$expandRatio);
+            if ($space->getCharacteristic($curExpDir)->getValue() < 0) {
+                $space->expandSpaceDir($curExpDir, abs($space->getCharacteristic($curExpDir)->getValue()));
+            }
         }
         $world->addResource($space);
     }
