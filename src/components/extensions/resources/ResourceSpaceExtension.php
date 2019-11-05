@@ -71,11 +71,11 @@ class ResourceSpaceExtension extends Extension implements IResourceSpaceExtensio
      */
     public function setVolume(int $volume, IWorldResource &$space = null)
     {
-        $volume = $space->getCharacteristic(
+        $volumeChar = $space->getCharacteristic(
             IWorldExtensionSpace::RES__CHAR_VOLUME
         );
-        $volume->setValue($volume);
-        $space->addCharacteristic($volume);
+        $volumeChar->setValue($volume);
+        $space->addCharacteristic($volumeChar);
     }
 
     /**
