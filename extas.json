@@ -1,0 +1,57 @@
+{
+  "name": "c2b/space",
+  "plugins": [
+    {
+      "class": "c2b\\components\\plugins\\worlds\\mutations\\WorldMutationSpace",
+      "stage": "world.mutation"
+    },
+    {
+      "class": "c2b\\components\\plugins\\resources\\PluginResourceSpaceSaturation",
+      "stage": "world.space.saturation"
+    },
+    {
+      "class": "c2b\\components\\plugins\\resources\\PluginResourceSpaceProgress",
+      "stage": "world.space.progress"
+    },
+    {
+      "class": "c2b\\components\\plugins\\resources\\PluginResourceSpaceConsuming",
+      "stage": "world.space.consuming"
+    },
+    {
+      "class": "c2b\\components\\plugins\\resources\\PluginResourceSpaceDegradation",
+      "stage": "world.space.degradation"
+    }
+  ],
+  "extensions": [
+    {
+      "class": "c2b\\components\\extensions\\worlds\\WorldExtensionSpace",
+      "interface": "c2b\\interfaces\\extensions\\worlds\\IWorldExtensionSpace",
+      "subject": "c2b.world",
+      "methods": [
+        "expandSpace",
+        "drainEnergy",
+        "bufferSpace",
+        "degradeSpace"
+      ]
+    },
+    {
+      "class": "c2b\\components\\extensions\\resources\\ResourceSpaceExtension",
+      "interface": "c2b\\interfaces\\extensions\\resources\\IResourceSpaceExtension",
+      "subject": "c2b.world.resource",
+      "methods": [
+        "incSpaceBuffer",
+        "decSpaceBuffer",
+        "expandSpaceDir",
+        "getVolume",
+        "setVolume",
+        "getBufferSize",
+        "getBufferIncrement",
+        "getExpandCost",
+        "getExpandRation",
+        "getX",
+        "getY",
+        "getZ"
+      ]
+    }
+  ]
+}
