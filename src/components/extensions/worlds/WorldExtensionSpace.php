@@ -78,7 +78,7 @@ class WorldExtensionSpace extends Extension implements IWorldExtensionSpace
     public function degradeSpace(IWorld &$world = null)
     {
         /**
-         * @var $space IResourceSpaceExtension
+         * @var $space IResourceSpaceExtension|IWorldResource
          */
         $space = $world->getResource(static::RES__NAME);
 
@@ -88,6 +88,7 @@ class WorldExtensionSpace extends Extension implements IWorldExtensionSpace
         if ($world->getCurrentEnergy() < $space->getVolume()) {
             $space->expandSpaceDir($curExpDir, -$expandRatio);
         }
+        $world->addResource($space);
     }
 
     /**
