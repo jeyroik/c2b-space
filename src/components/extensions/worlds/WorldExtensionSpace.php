@@ -101,6 +101,6 @@ class WorldExtensionSpace extends Extension implements IWorldExtensionSpace
             static::RES__CHAR_MAX_Z
         ];
 
-        return $expandDirectionMap[mt_rand(0, count($expandDirectionMap))];
+        return $expandDirectionMap[mt_rand(0, count($expandDirectionMap)-1)];
     }
 }
